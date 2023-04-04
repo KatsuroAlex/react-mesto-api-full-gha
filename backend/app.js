@@ -2,7 +2,7 @@ require('dotenv').config();
 
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors');
+// const cors = require('cors');
 
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
@@ -12,7 +12,7 @@ const router = require('./routes');
 const handleErrors = require('./middlewares/handleErrors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const path = require('path');
-const corsOption = require('./middlewares/cors');
+// const corsOption = require('./middlewares/cors');
 
 const { PORT = 3001 } = process.env;
 const app = express();
@@ -26,7 +26,7 @@ const app = express();
 
 // app.use(express.static(path.join(__dirname, 'build')));
 // app.use(express.static(path.join(__dirname, '../frontend/build')));  
-// app.use(cors({origin: 'http://katsuroprojectbackend15.nomoredomains.work'}));
+app.use(cors({origin: 'http://katsuromesto.nomoredomains.monster'}));
 // app.use(cors({origin: '*'}));
 // app.use(cors({origin: 'http://localhost:3000'}));
 app.use(bodyParser.json());
@@ -37,7 +37,7 @@ app.use(cookieParser());
 
 app.use(requestLogger); // логгер запросов
 
-app.use(cors(corsOption));
+// app.use(cors(corsOption));
 
 
 app.get('/crash-test', () => {
