@@ -1,0 +1,22 @@
+.profile__rectangle-button {
+    background: url('../../../images/Edit_Button.svg') no-repeat center center;
+    border: 1px solid #FFFFFF;
+    width: 24px;
+    height: 24px;
+    opacity: 1;
+    transition: 0.2s linear;
+    margin-top: 37px;
+    cursor: pointer;
+}
+
+.profile__rectangle-button:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 320px) {
+    .profile__rectangle-button {
+        width: 18px;
+        height: 18px;
+        margin-top: 28px;
+    }
+}

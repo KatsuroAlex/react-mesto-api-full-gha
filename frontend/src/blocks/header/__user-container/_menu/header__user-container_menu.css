@@ -1,0 +1,13 @@
+@media screen and (max-width:560px) {
+  .header__user-container_menu{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+    text-align: center;
+    height: 114px;
+    border-bottom: 1px solid #545454;
+    order: 1;
+  }
+}

@@ -1,0 +1,19 @@
+.registration{
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 282px);
+}
+
+
+@media screen and (max-width:960px) {
+  .registration {
+    min-height: calc(100vh - 210px);
+  }
+}
+
+
+@media screen and (max-width:570px) {
+  .registration {
+    min-height: calc(100vh - 170px);
+  }
+}

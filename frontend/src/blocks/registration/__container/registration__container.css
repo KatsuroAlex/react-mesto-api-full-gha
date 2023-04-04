@@ -1,0 +1,17 @@
+.registration__container{
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  padding-top: 60px;
+  margin: 0 auto;
+  width: 358px;
+  flex-grow: 1;
+}
+
+
+@media screen and (max-width: 420px) {
+  .registration__container {
+    padding: 28px;
+    width: 100%;
+  }
+}

@@ -1,0 +1,16 @@
+.profile__edit-group{
+  position: relative;
+  display: flex;
+}
+
+@media screen and (max-width: 619px) {
+  .profile__edit-group {
+    justify-content: center;
+    align-items: center;
+
+  }
+}
+
+.profile__edit-group:hover .profile__edit-button{
+  display: block;
+}

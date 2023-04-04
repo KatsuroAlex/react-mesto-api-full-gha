@@ -1,0 +1,12 @@
+.popup__container_type_avatar {
+  min-height: auto;
+  height: auto;
+}
+
+@media screen and (max-width: 518px) {
+  .popup__container_type_avatar {
+      max-width: 240px;
+      padding: 25px 22px 25px 22px;
+
+  }
+}

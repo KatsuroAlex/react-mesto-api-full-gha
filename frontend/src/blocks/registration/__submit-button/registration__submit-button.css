@@ -1,0 +1,34 @@
+.registration__submit-button{
+  width: 100%;
+  height: 50px;
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #fff;
+  color: #000;
+  border: none;
+  margin: 216px 0 32px 0;
+  border-radius: 2px;
+  padding: 0;
+  font-style: inherit;
+  font-size: 18px;
+  line-height: 1.22;
+  transition: opacity .3s ease-in;
+}
+  
+.registration__submit-button:hover {
+  cursor: pointer;
+  opacity: 0.85;
+}
+    
+.registration__submit-button:focus {
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.8);
+  outline: none;
+}
+
+@media screen and (max-width:560px) {
+  .registration__submit-button {
+    font-size: 16px;
+    min-height: 40px;
+    margin-top: 173px;
+  }
+}

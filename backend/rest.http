@@ -1,0 +1,107 @@
+### Регистрация
+POST http://158.160.24.94:3000/signup
+Content-Type: application/json
+
+{
+  "email": "mongo@mongo.ru",
+  "password": "mongo",
+  "name": "test",
+  "about": "about",
+  "avatar": "https://ya.ru/av.bmp"
+}
+
+
+### Вход в аккаунт
+POST http://localhost:3001/signin
+Content-Type: application/json
+
+{
+  "email": "admin@admin.ru",
+  "password": "admin"
+}
+
+
+### Выход из аккаунта
+GET http://localhost:3001/logout
+
+
+### Регистрация
+POST http://localhost:3001/signup
+Content-Type: application/json
+
+{
+  "email": "adminn@admin.ru",
+  "password": "admin",
+  "name": "test",
+  "about": "about",
+  "avatar": "https://ya.ru/av.bmp"
+}
+
+
+### Получить всех пользователей
+GET http://localhost:3001/users
+
+### возвращает пользователя по ID
+GET http://localhost:3001/users/63e92a801b2a6e21caec4850
+
+
+### Создает пользователя
+POST http://localhost:3001/users
+Content-Type: application/json
+
+{
+  "name": "diman",
+  "about": "admin",
+  "avatar": "https://ya.ru/av.bmp",
+  "email": "diman@diman.ru.ru",
+  "password": "diman"
+}
+
+### Найти пользователя
+GET http://localhost:3001/users/me
+# Content-Type: Bearer
+
+# {
+#   "email": "admin@mail.ru",
+#   "password": "admin12"
+# }
+
+
+### Обновить данные пользователя
+PATCH http://localhost:3000/users/me
+Content-Type: application/json
+
+{
+  "name": "Обновленное3",
+  "about": "Обновленная информация о себе"
+}
+
+### Обновить Аватар пользователя
+PATCH http://localhost:3000/users/me/avatar
+Content-Type: application/json
+
+{
+  "avatar": "https://images.unsplash.com/photo-1670431757843-e8fd3f24490f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw0fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=700&q=60"
+}
+
+
+### получить все карточки
+GET http://localhost:3001/cards
+
+### создает карточку
+POST http://localhost:3001/cards
+Content-Type: application/json
+
+{
+  "name": "111111",
+  "link": "https://images.unsplash.com/photo-1680246637672-7a631a45f28d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60",
+}
+
+### удаляет карточку по id
+DELETE http://localhost:3000/cards/63987cbefe12585b6b697056
+
+### поставить лайк на карточку
+PUT http://localhost:3000/cards/639764b55bea54cede220346/likes
+
+### убрать лайк с карточки
+DELETE http://localhost:3000/cards/639764b55bea54cede220346/likes

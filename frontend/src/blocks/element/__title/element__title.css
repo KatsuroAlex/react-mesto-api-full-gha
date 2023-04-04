@@ -1,0 +1,9 @@
+.element__title {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-between;
+    padding: 25px 14px 24px 21px;
+    margin-top: 0;
+}
