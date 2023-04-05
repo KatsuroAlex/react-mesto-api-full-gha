@@ -11,10 +11,10 @@ const { errors } = require('celebrate');
 const router = require('./routes');
 const handleErrors = require('./middlewares/handleErrors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-const path = require('path');
+// const path = require('path');
 const corsOption = require('./middlewares/cors');
 
-const { PORT = 3001 } = process.env;
+const { PORT = 3000 } = process.env;
 const app = express();
 
 // // подключаемся к серверу mongo
@@ -25,7 +25,7 @@ const app = express();
 // });
 
 // app.use(express.static(path.join(__dirname, 'build')));
-// app.use(express.static(path.join(__dirname, '../frontend/build')));  
+// app.use(express.static(path.join(__dirname, '../frontend/build')));
 // app.use(cors({origin: 'http://katsuromesto.nomoredomains.monster'}));
 // app.use(cors({origin: '*'}));
 // app.use(cors({origin: 'http://localhost:3000'}));
@@ -39,12 +39,11 @@ app.use(requestLogger); // логгер запросов
 
 app.use(cors(corsOption));
 
-
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');
   }, 0);
-}); 
+});
 
 /// основные роуты
 app.use(router);
