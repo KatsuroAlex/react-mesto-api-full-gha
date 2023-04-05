@@ -104,12 +104,33 @@ const getUsers = async (req, res, next) => {
   }
 };
 
+// const getUsers = (req, res, next) => {
+//   User.find({})
+//     .then((users) => {
+//       res.send(users.map((user) => {
+//         const {
+//           name,
+//           about,
+//           avatar,
+//           _id,
+//         } = user;
+//         return {
+//           _id,
+//           name,
+//           about,
+//           avatar,
+//         };
+//       }));
+//     })
+//     .catch(next);
+// };
+
 const getUser = async (req, res, next) => {
   try {
     const { id } = req.params; // Достаем id через деструктуризацию
     const user = await User.findById(id).orFail(new NotFoundError('Пользователь по указанному id не найден'));
-    // return res.status(SUCCESS).json(user);
-    return res.status(SUCCESS).send(user);
+    return res.status(SUCCESS).json(user);
+    // return res.status(SUCCESS).send(user);
   } catch (err) {
     if (err.name === 'CastError') {
       next(new NotFoundError('Переданы некорректные данные id пользователя'));
@@ -123,7 +144,6 @@ const getUser = async (req, res, next) => {
 const findUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id).orFail(new NotFoundError('Пользователь по указанному _id не найден'));
-    // return res.send({ user });
     return res.send(user);
   } catch (err) {
     return next(err);

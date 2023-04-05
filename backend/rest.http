@@ -12,7 +12,7 @@ Content-Type: application/json
 
 
 ### Вход в аккаунт
-POST http://localhost:3001/signin
+POST http://localhost:3000/signin
 Content-Type: application/json
 
 {
@@ -39,10 +39,10 @@ Content-Type: application/json
 
 
 ### Получить всех пользователей
-GET http://localhost:3001/users
+GET http://localhost:3000/users
 
 ### возвращает пользователя по ID
-GET http://localhost:3001/users/63e92a801b2a6e21caec4850
+GET http://localhost:3000/users/642aebfcc0c49dabe4152d67
 
 
 ### Создает пользователя

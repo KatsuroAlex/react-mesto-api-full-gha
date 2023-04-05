@@ -7,21 +7,21 @@ const userSchema = new mongoose.Schema({
   name: { // у пользователя есть имя — опишем требования к имени в схеме:
     type: String,
     default: 'Жак-Ив Кусто',
-    required: true,
+    // required: true,
     minlength: 2,
     maxlength: 30,
   },
   about: {
     type: String,
     default: 'Исследователь',
-    required: true,
+    // required: true,
     minlength: 2,
     maxlength: 30,
   },
   avatar: {
     type: String,
     default: 'https://pictures.s3.yandex.net/resources/jacques-cousteau_1604399756.png',
-    required: true,
+    // required: true,
     validate: {
       validator: (v) => validator.isURL(v),
       message: 'Неверный формат ссылки на изображение',
