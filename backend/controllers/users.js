@@ -14,9 +14,9 @@ const {
 const createUser = async (req, res, next) => {
   try {
     const {
-      // name,
-      // about,
-      // avatar,
+      name,
+      about,
+      avatar,
       email,
       password,
     } = req.body;
@@ -30,9 +30,9 @@ const createUser = async (req, res, next) => {
     // хешируем пароль
     const hash = await bcrypt.hash(password, 10);
     const user = await User.create({
-      // name,
-      // about,
-      // avatar,
+      name,
+      about,
+      avatar,
       email,
       password: hash,
     });
@@ -70,38 +70,38 @@ const login = async (req, res, next) => {
   }
 };
 
-// const getUsers = async (req, res, next) => {
-//   try {
-//     const users = await User.find({});
-//     // return res.status(SUCCESS).json({ users });
-//     return res.status(SUCCESS).json(users);
-//   } catch (err) {
-//     return next(err);
-//   }
-// };
-
 const getUsers = async (req, res, next) => {
   try {
     const users = await User.find({});
-    const formattedUsers = users.map((user) => {
-      const {
-        name,
-        about,
-        avatar,
-        // _id,
-      } = user;
-      return {
-        name,
-        about,
-        avatar,
-        // _id,
-      };
-    });
-    res.send(formattedUsers);
-  } catch (error) {
-    next(error);
+    return res.status(SUCCESS).json({ users });
+    // return res.status(SUCCESS).json(users);
+  } catch (err) {
+    return next(err);
   }
 };
+
+// const getUsers = async (req, res, next) => {
+//   try {
+//     const users = await User.find({});
+//     const formattedUsers = users.map((user) => {
+//       const {
+//         name,
+//         about,
+//         avatar,
+//         _id,
+//       } = user;
+//       return {
+//         name,
+//         about,
+//         avatar,
+//         _id,
+//       };
+//     });
+//     res.send(formattedUsers);
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 // const getUsers = (req, res, next) => {
 //   User.find({})
