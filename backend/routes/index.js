@@ -7,9 +7,9 @@ const { createUser, login } = require('../controllers/users');
 const cardRouter = require('./cards');
 const userRouter = require('./users');
 const NotFoundError = require('../errors/notFoundError');
-const {
-  ERROR_NOT_FOUND,
-} = require('../errors/constants');
+// const {
+//   ERROR_NOT_FOUND,
+// } = require('../errors/constants');
 
 router.post('/signup', celebrate({
   body: Joi.object().keys({
@@ -29,12 +29,12 @@ router.post('/signup', celebrate({
 
 router.post('/signin', celebrate({
   body: Joi.object().keys({
-    name: Joi.string().min(2).max(30),
-    about: Joi.string().min(2).max(30),
-    avatar: Joi.string().custom((value, helpers) => {
-      if (validator.isURL(value)) return value;
-      return helpers.message('Неверный формат ссылки на изображение');
-    }),
+    // name: Joi.string().min(2).max(30),
+    // about: Joi.string().min(2).max(30),
+    // avatar: Joi.string().custom((value, helpers) => {
+    //   if (validator.isURL(value)) return value;
+    //   return helpers.message('Неверный формат ссылки на изображение');
+    // }),
     email: Joi.string().required().custom((value, helpers) => {
       if (validator.isEmail(value)) return value;
       return helpers.message('Неверный формат почты');
@@ -53,8 +53,6 @@ router.get('/logout', (req, res) => {
   // res.clearCookie('jwt', { secure: 'true', sameSite: 'none' }).send();
   // res.send('token');
 });
-
-router.use('*', (req, res) => res.status(ERROR_NOT_FOUND).send({ message: 'Указан неправильный путь' }));
 
 router.use((req, res, next) => {
   next(new NotFoundError(`Запрашиваемый ресурс по адресу '${req.path}' не найден`));

@@ -26,9 +26,10 @@ const createCard = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new ValidationError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
-    } else {
-      return next(err);
     }
+    // else {
+    //   return next(err);
+    // }
     return next(err);
   }
 };
@@ -39,14 +40,15 @@ const deleteCard = async (req, res, next) => {
     if (String(card.owner) !== String(req.user._id)) {
       throw new NoRightsError('Недостаточно прав для удаления');
     }
-    card.remove();
-    res.send({ message: 'Пост удален' });
+    return card.remove().then(() => res.send({ message: 'Пост удален' }));
   } catch (err) {
     if (err.name === 'CastError') {
       next(new ValidationError('Переданы некорректные данные id карточки'));
-    } else {
-      next(err);
     }
+    // else {
+    //   next(err);
+    // }
+    return next(err);
   }
 };
 
@@ -62,9 +64,10 @@ const likeCard = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'CastError') {
       next(new ValidationError('Переданы некорректные данные id карточки'));
-    } else {
-      return next(err);
     }
+    // else {
+    //   return next(err);
+    // }
     return next(err);
   }
 };
@@ -81,9 +84,10 @@ const dislikeCard = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'CastError') {
       next(new ValidationError('Переданы некорректные данные id карточки'));
-    } else {
-      return next(err);
     }
+    // else {
+    //   return next(err);
+    // }
     return next(err);
   }
 };

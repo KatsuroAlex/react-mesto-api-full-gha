@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
   name: { // у пользователя есть имя — опишем требования к имени в схеме:
     type: String,
     default: 'Жак-Ив Кусто',
-    // required: true,
+    required: true,
     minlength: 2,
     maxlength: 30,
   },
@@ -39,7 +39,7 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlength: 4,
+    // minlength: 4,
     select: false,
   },
 });

@@ -1,6 +1,8 @@
 const CORS_WHITELIST = [
   'http://katsuromesto.nomoredomains.monster',
   'https://katsuromesto.nomoredomains.monster',
+  // 'http://localhost:3000',
+  // 'https://localhost:3000',
 ];
 
 const corsOption = {

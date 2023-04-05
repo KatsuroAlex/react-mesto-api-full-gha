@@ -20,13 +20,13 @@ const createUser = async (req, res, next) => {
       email,
       password,
     } = req.body;
-    if (!password || password.length < 4) {
-      throw new ValidationError('Пароль отсутствует или короче четырех символов');
-    }
-    const existingUser = await User.findOne({ email });
-    if (existingUser) {
-      throw new UserExistError('Пользователь c таким email уже существует');
-    }
+    // if (!password || password.length < 4) {
+    //   throw new ValidationError('Пароль отсутствует или короче четырех символов');
+    // }
+    // const existingUser = await User.findOne({ email });
+    // if (existingUser) {
+    //   throw new UserExistError('Пользователь c таким email уже существует');
+    // }
     // хешируем пароль
     const hash = await bcrypt.hash(password, 10);
     const user = await User.create({
@@ -38,13 +38,16 @@ const createUser = async (req, res, next) => {
     });
     res.status(200).json(user);
   } catch (err) {
-    if (err.name === 'ValidationError') {
-      next(new ValidationError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
-    } else if (err.name === 'MongoError' && err.code === 11000) {
+    if (err.code === 11000) {
       next(new UserExistError('Пользователь c таким email уже существует'));
+    } else if (err.name === 'ValidationError') {
+      next(new ValidationError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
     } else {
       next(err);
     }
+    // else if (err.name === 'MongoError' && err.code === 11000) {
+    //   next(new UserExistError('Пользователь c таким email уже существует'));
+    // }
   }
 };
 
@@ -133,9 +136,10 @@ const getUser = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'CastError') {
       next(new NotFoundError('Переданы некорректные данные id пользователя'));
-    } else {
-      next(err);
     }
+    // else {
+    //   next(err);
+    // }
     return next(err);
   }
 };
@@ -160,9 +164,10 @@ const updateUser = async (req, res, next) => {
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new ValidationError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
-    } else {
-      next(err);
     }
+    // else {
+    //   next(err);
+    // }
     return next(err);
   }
 };
