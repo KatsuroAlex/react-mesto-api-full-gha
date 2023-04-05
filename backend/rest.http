@@ -3,8 +3,8 @@ POST http://localhost:3000/signup
 Content-Type: application/json
 
 {
-  "email": "mongo@mongo.ru",
-  "password": "mongo"
+  "email": "mongod@mongod.ru",
+  "password": "mongod"
 }
 
 
