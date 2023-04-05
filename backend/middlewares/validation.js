@@ -2,7 +2,7 @@ const { celebrate, Joi } = require('celebrate');
 const { ObjectId } = require('mongoose').Types;
 const validator = require('validator');
 
-// вспомогательная ф-ия проверки id  есть
+// вспомогательная ф-ия проверки id
 const checkedId = Joi.string()
   .required()
   .custom((value, helpers) => {
@@ -23,7 +23,6 @@ const validateCard = celebrate({
   }),
 });
 
-// есть
 const validateUserProfile = celebrate({
   body: Joi.object().keys({
     name: Joi.string().min(2).max(30),

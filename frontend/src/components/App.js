@@ -35,44 +35,6 @@ function App() {
     element: {},
   });
 
-
-  //   useEffect(() => {
-  //   tokenCheck()
-  // }, [])
-
-  // function tokenCheck() {
-  //   const token = localStorage.getItem("token");
-  //   auth.getContent(token)
-  //     .then((res) => {
-  //       if(res) {
-  //         setLoggedIn(true)
-  //         setEmail(res.email)
-  //         history.push('/')
-  //       }
-  //     })
-  //     .catch((err) => console.log(err))
-  // }
-
-
-
-  // useEffect(() => {
-  //   if(loggedIn){   
-  //     api.getProfileData()
-  //       .then((res) => {
-  //       handleLoggedIn();
-  //       setCurrentUser(res);
-  //     }) 
-  //     .catch((err) => console.log(err));
-    
-  //     api.getInitialCards()
-  //       .then((data) => {
-  //         setCards(data);
-  //       })
-  //       .catch((err) => console.log(err));
-  //   }
-  // }, [loggedIn]);
-
-
   //при загрузке если получаем пользователя то перенаправляем его
   useEffect(() => {
     api.getProfileData()
@@ -170,7 +132,6 @@ function App() {
     // Снова проверяем, есть ли уже лайк на этой карточке
     const isLiked = card.likes.some((i) => i._id === currentUser._id);
     console.log(currentUser._id);
-    // const isLiked = card.likes.some((i) => i === currentUser._id);
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
       .changeLikeCardStatus(card._id, !isLiked)
@@ -213,24 +174,6 @@ function App() {
       });
   }
 
-  //////Запрос на вход пользователя
-  // function handleLogin(password, email) {
-  //   auth
-  //     .login(password, email)
-  //     .then((data) => {
-  //       if (data.token) {
-  //         setEmail(email);
-  //         handleLoggedIn();
-  //         localStorage.setItem("token", data.token);
-  //         history.push("/");
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       handleInfoTooltip(false);
-  //       console.log(err);
-  //     });
-  // }
-
   function handleLogin (password, email) {
     auth.login(password, email)
       .then(res => {
@@ -243,21 +186,6 @@ function App() {
         console.log(err);
       })
   }
-
-  // /////Проверка токена
-  // useEffect(() => {
-  //   const token = localStorage.getItem("token");
-  //   if (token) {
-  //     auth.getContent(token).then((data) => {
-  //       if (data) {
-  //         // setEmail(data.email);
-  //         handleLoggedIn();
-  //         setEmail(data.email);
-  //         history.push("/");
-  //       }
-  //     });
-  //   }
-  // }, [history]);
 
   //////////Обработка выхода пользователя
   function handleSignOut() {

@@ -7,7 +7,6 @@ class Api {
     this._cardsUrl = `${this._baseUrl}/cards`;
     this._avatarUrl = `${this._baseUrl}/users/me/avatar`;
     this._likesUrl = `${this._baseUrl}/cards/cardId/likes`;
-    // this._headers = headers;
     this._token = headers['authorization'];
   }
 
@@ -22,7 +21,6 @@ class Api {
   getProfileData() {
     return fetch(this._userUrl, {
       method: "GET",
-      // headers: this._headers,
       headers: {
         authorization: this._token,
       },
@@ -34,7 +32,6 @@ class Api {
   setUserInfo({ name, about }) {
     return fetch(this._userUrl, {
       method: "PATCH",
-      // headers: this._headers,
       headers: {
         authorization: this._token,
         'Content-Type': 'application/json'
@@ -52,7 +49,6 @@ class Api {
   setUserAvatar(src) {
     return fetch(`${this._userUrl}/avatar`, {
       method: "PATCH",
-      // headers: this._headers,
       headers: {
         authorization: this._token,
         'Content-Type': 'application/json'
@@ -68,7 +64,6 @@ class Api {
   //////// загружаем карточки с сервера
   getInitialCards() {
     return fetch(this._cardsUrl, {
-      // headers: this._headers,
       headers: {
         authorization: this._token,
       },
@@ -110,7 +105,6 @@ class Api {
   changeLikeCardStatus(cardId, isNotLiked) {
     return fetch(`${this._cardsUrl}/${cardId}/likes`, {
       method: isNotLiked ? "PUT" : "DELETE",
-      // headers: this._headers,
       headers: {
         authorization: this._token,
       },
@@ -119,17 +113,6 @@ class Api {
   }
 
 }
-
-// const api = new Api({
-//   baseUrl: "https://mesto.nomoreparties.co/v1/cohort-50",
-//   headers: {
-//     authorization: "0cd386ae-1830-42e7-aefa-1c5dfe1b78a1",
-//     "Content-Type": "application/json",
-//   },
-// });
-    // authorization: `Bearer ${localStorage.getItem('token')}`,
-
-
 
 const api = new Api({
   baseUrl: BASE_URL,

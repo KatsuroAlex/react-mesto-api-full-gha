@@ -20,16 +20,13 @@ const getCards = async (req, res, next) => {
 const createCard = async (req, res, next) => {
   try {
     const { name, link } = req.body;
-    // const card = await Card.create({ name, link, owner: req.user._id }).populate('owner');
     const card = await Card.create({ name, link, owner: req.user._id });
-    return res.status(SUCCESS).json(card);
+    const populatedCard = await Card.findById(card._id).populate('owner');
+    return res.status(SUCCESS).json(populatedCard);
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new ValidationError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
     }
-    // else {
-    //   return next(err);
-    // }
     return next(err);
   }
 };
@@ -45,9 +42,6 @@ const deleteCard = async (req, res, next) => {
     if (err.name === 'CastError') {
       next(new ValidationError('Переданы некорректные данные id карточки'));
     }
-    // else {
-    //   next(err);
-    // }
     return next(err);
   }
 };
@@ -65,9 +59,6 @@ const likeCard = async (req, res, next) => {
     if (err.name === 'CastError') {
       next(new ValidationError('Переданы некорректные данные id карточки'));
     }
-    // else {
-    //   return next(err);
-    // }
     return next(err);
   }
 };
@@ -85,9 +76,6 @@ const dislikeCard = async (req, res, next) => {
     if (err.name === 'CastError') {
       next(new ValidationError('Переданы некорректные данные id карточки'));
     }
-    // else {
-    //   return next(err);
-    // }
     return next(err);
   }
 };

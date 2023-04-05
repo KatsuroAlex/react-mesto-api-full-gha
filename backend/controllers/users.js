@@ -20,13 +20,6 @@ const createUser = async (req, res, next) => {
       email,
       password,
     } = req.body;
-    // if (!password || password.length < 4) {
-    //   throw new ValidationError('Пароль отсутствует или короче четырех символов');
-    // }
-    // const existingUser = await User.findOne({ email });
-    // if (existingUser) {
-    //   throw new UserExistError('Пользователь c таким email уже существует');
-    // }
     // хешируем пароль
     const hash = await bcrypt.hash(password, 10);
     const user = await User.create({
@@ -45,9 +38,6 @@ const createUser = async (req, res, next) => {
     } else {
       next(err);
     }
-    // else if (err.name === 'MongoError' && err.code === 11000) {
-    //   next(new UserExistError('Пользователь c таким email уже существует'));
-    // }
   }
 };
 
@@ -77,69 +67,20 @@ const getUsers = async (req, res, next) => {
   try {
     const users = await User.find({});
     return res.status(SUCCESS).json({ users });
-    // return res.status(SUCCESS).json(users);
   } catch (err) {
     return next(err);
   }
 };
-
-// const getUsers = async (req, res, next) => {
-//   try {
-//     const users = await User.find({});
-//     const formattedUsers = users.map((user) => {
-//       const {
-//         name,
-//         about,
-//         avatar,
-//         _id,
-//       } = user;
-//       return {
-//         name,
-//         about,
-//         avatar,
-//         _id,
-//       };
-//     });
-//     res.send(formattedUsers);
-//   } catch (error) {
-//     next(error);
-//   }
-// };
-
-// const getUsers = (req, res, next) => {
-//   User.find({})
-//     .then((users) => {
-//       res.send(users.map((user) => {
-//         const {
-//           name,
-//           about,
-//           avatar,
-//           _id,
-//         } = user;
-//         return {
-//           _id,
-//           name,
-//           about,
-//           avatar,
-//         };
-//       }));
-//     })
-//     .catch(next);
-// };
 
 const getUser = async (req, res, next) => {
   try {
     const { id } = req.params; // Достаем id через деструктуризацию
     const user = await User.findById(id).orFail(new NotFoundError('Пользователь по указанному id не найден'));
     return res.status(SUCCESS).json(user);
-    // return res.status(SUCCESS).send(user);
   } catch (err) {
     if (err.name === 'CastError') {
       next(new NotFoundError('Переданы некорректные данные id пользователя'));
     }
-    // else {
-    //   next(err);
-    // }
     return next(err);
   }
 };
@@ -160,14 +101,10 @@ const updateUser = async (req, res, next) => {
     const result = await User.findByIdAndUpdate(req.user._id, updates, options).orFail(new NotFoundError('Пользователь по указанному _id не найден'));
     console.log(result);
     return res.status(SUCCESS).json(result);
-    // return res.status(SUCCESS).send({result});
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new ValidationError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));
     }
-    // else {
-    //   next(err);
-    // }
     return next(err);
   }
 };
@@ -177,7 +114,6 @@ const updateAvatar = async (req, res, next) => {
     const options = { new: true };
     const user = await User.findByIdAndUpdate(req.user._id, req.body, options).orFail(new NotFoundError('Пользователь по указанному _id не найден'));
     console.log(user);
-    // return res.status(SUCCESS).json({ user });
     return res.status(SUCCESS).json(user);
   } catch (err) {
     if (err.name === 'ValidationError') {
