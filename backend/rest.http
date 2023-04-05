@@ -1,13 +1,10 @@
 ### Регистрация
-POST http://158.160.24.94:3000/signup
+POST http://localhost:3000/signup
 Content-Type: application/json
 
 {
   "email": "mongo@mongo.ru",
-  "password": "mongo",
-  "name": "test",
-  "about": "about",
-  "avatar": "https://ya.ru/av.bmp"
+  "password": "mongo"
 }
 
 
@@ -22,11 +19,11 @@ Content-Type: application/json
 
 
 ### Выход из аккаунта
-GET http://localhost:3001/logout
+GET http://localhost:3000/logout
 
 
 ### Регистрация
-POST http://localhost:3001/signup
+POST http://localhost:3000/signup
 Content-Type: application/json
 
 {
