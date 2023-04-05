@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес -> 158.160.5.86
+IP 158.160.5.86
 
 Frontend <https://katsuromesto.nomoredomains.monster>
 
