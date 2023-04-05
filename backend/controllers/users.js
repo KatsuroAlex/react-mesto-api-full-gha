@@ -104,7 +104,6 @@ const getUsers = async (req, res, next) => {
   }
 };
 
-
 const getUser = async (req, res, next) => {
   try {
     const { id } = req.params; // Достаем id через деструктуризацию
@@ -121,7 +120,6 @@ const getUser = async (req, res, next) => {
   }
 };
 
-
 const findUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.user._id).orFail(new NotFoundError('Пользователь по указанному _id не найден'));
@@ -134,7 +132,7 @@ const findUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
   try {
-    const updates = req.body; 
+    const updates = req.body;
     const options = { new: true, runValidators: true };
     const result = await User.findByIdAndUpdate(req.user._id, updates, options).orFail(new NotFoundError('Пользователь по указанному _id не найден'));
     console.log(result);
@@ -156,7 +154,7 @@ const updateAvatar = async (req, res, next) => {
     const user = await User.findByIdAndUpdate(req.user._id, req.body, options).orFail(new NotFoundError('Пользователь по указанному _id не найден'));
     console.log(user);
     // return res.status(SUCCESS).json({ user });
-    return res.status(SUCCESS).json(user);    
+    return res.status(SUCCESS).json(user);
   } catch (err) {
     if (err.name === 'ValidationError') {
       next(new ValidationError(`${Object.values(err.errors).map((error) => error.message).join(', ')}`));

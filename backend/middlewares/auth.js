@@ -4,19 +4,17 @@ const jwt = require('jsonwebtoken');
 const AuthError = require('../errors/authError');
 
 const auth = (req, res, next) => {
-const { token } = req.cookies;
+  const { token } = req.cookies;
   // const { authorization } = req.headers;
   // const authorization = req.header('Authorization');
 
+  // if (!authorization || !authorization.startsWith('Bearer ')) {
+  //   throw new AuthError(AUTH_ERROR_MESSAGE);
+  // }
 
-    // if (!authorization || !authorization.startsWith('Bearer ')) {
-    //   throw new AuthError(AUTH_ERROR_MESSAGE);
-    // }
-
-    // const token = authorization.replace('Bearer ', '');
-    // const { token } = req.headers;
-    console.log(token);
-
+  // const token = authorization.replace('Bearer ', '');
+  // const { token } = req.headers;
+  console.log(token);
   if (!token) {
     return next(new AuthError('Токен остутствует или некорректен'));
   }
@@ -29,7 +27,7 @@ const { token } = req.cookies;
   }
 
   req.user = payload;
-  next();
+  return next();
 };
 
 module.exports = auth;
